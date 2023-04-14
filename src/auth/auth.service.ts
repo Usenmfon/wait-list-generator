@@ -6,9 +6,10 @@ import { User, UserDocument } from './schema/auth.schema';
 import { Model } from 'mongoose';
 import * as argon from 'argon2';
 import { IAuthUser } from './interfaces/auth.interface';
-import { SignUpDto } from './dto';
+import { SignInDto, SignUpDto } from './dto';
 import { ServiceException } from 'src/helper/exceptions/exceptions/service.layer.exception';
 import { parseDBError } from 'src/helper/main';
+import { bruteForceCheck } from './helper/auth.helper';
 
 @Injectable()
 export class AuthService {
@@ -30,6 +31,29 @@ export class AuthService {
         user.password = password;
         await user.save();
         return this.signToken(user);
+      })
+      .catch((e) => {
+        throw new ServiceException({ error: parseDBError(e) });
+      });
+  }
+
+  async signin(dto: SignInDto): Promise<IAuthUser> {
+    return this.UserSchema.findOne({ email: dto.email })
+      .then(async (user) => {
+        if (!user) {
+          throw new ServiceException({ error: 'User not found' });
+        }
+
+        if (!(await bruteForceCheck(user))) {
+          throw new ServiceException({ error: 'Too many attempts' });
+        }
+
+        if (await argon.verify(user.password, dto.password)) {
+          user.attempt = 0;
+          await user.save();
+          return this.signToken(user);
+        }
+        throw new ServiceException({ error: 'Credentials incorrect' });
       })
       .catch((e) => {
         throw new ServiceException({ error: parseDBError(e) });
