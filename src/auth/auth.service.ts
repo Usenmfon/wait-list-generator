@@ -10,6 +10,8 @@ import { SignInDto, SignUpDto } from './dto';
 import { ServiceException } from 'src/helper/exceptions/exceptions/service.layer.exception';
 import { parseDBError } from 'src/helper/main';
 import { bruteForceCheck } from './helper/auth.helper';
+import { NewUserEvent } from './entities/event.entity';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 @Injectable()
 export class AuthService {
@@ -17,6 +19,7 @@ export class AuthService {
     @InjectModel(User.name) private UserSchema: Model<UserDocument>,
     private jwt: JwtService,
     private config: ConfigService,
+    private eventEmitter: EventEmitter2,
   ) {}
 
   async signup(dto: SignUpDto): Promise<IAuthUser> {
@@ -29,7 +32,10 @@ export class AuthService {
         const user = new this.UserSchema({ ...dto });
         const password = await argon.hash(user.password);
         user.password = password;
+        const eventObject = new NewUserEvent();
+        eventObject.user = user;
         await user.save();
+        this.eventEmitter.emit('user.new', eventObject);
         return this.signToken(user);
       })
       .catch((e) => {
