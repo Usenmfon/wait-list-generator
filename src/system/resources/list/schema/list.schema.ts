@@ -4,7 +4,7 @@ import { User } from 'src/auth/schema/auth.schema';
 
 @Schema({ timestamps: true })
 export class List {
-  @Prop({ type: Types.ObjectId, ref: 'User', required: true })
+  @Prop({ type: Types.ObjectId, ref: 'User', require: true })
   user: User;
 
   @Prop({ type: String })
