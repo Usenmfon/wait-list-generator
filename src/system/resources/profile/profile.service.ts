@@ -13,6 +13,19 @@ export class ProfileService {
     private ProfileSchema: Model<ProfileDocument>,
   ) {}
 
+  async getProfile(id: Types.ObjectId) {
+    return this.ProfileSchema.findOne({ _id: id })
+      .then(async (user) => {
+        if (!user) {
+          throw new ServiceException({ error: 'User profile not found' });
+        }
+        return user;
+      })
+      .catch((e) => {
+        throw new ServiceException({ error: parseDBError(e) });
+      });
+  }
+
   async updateProfile(id: Types.ObjectId, dto: UpdateProfileDto) {
     dto.user = id;
     return this.ProfileSchema.findOneAndUpdate({ _id: id }, dto, {
