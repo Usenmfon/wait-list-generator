@@ -20,8 +20,8 @@ export class ContactService {
   }
 
   //TODO: Make it dynamic (Add event emitter)
+  //TODO: Check if number exists in the same list
   async createContact(dto, params) {
-    console.log(params);
     return this.ContactSchema.findOne({ phoneNumber: dto.phoneNumber })
       .then(async (phone) => {
         if (phone) {
