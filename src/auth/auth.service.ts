@@ -43,6 +43,22 @@ export class AuthService {
       });
   }
 
+  async googleAuth(dto) {
+    return this.UserSchema.find({ email: dto.email })
+      .then(async (users) => {
+        if (users.length) {
+          throw new ServiceException({ error: 'email already exist' });
+        }
+
+        const user = new this.UserSchema({ ...dto });
+        await user.save();
+        return user;
+      })
+      .catch((e) => {
+        throw new ServiceException({ error: parseDBError(e) });
+      });
+  }
+
   async signin(dto: SignInDto): Promise<IAuthUser> {
     return this.UserSchema.findOne({ email: dto.email })
       .then(async (user) => {
