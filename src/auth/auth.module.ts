@@ -6,6 +6,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './schema/auth.schema';
 import { GoogleStrategy, JwtStrategy } from './strategy';
+import { MailModule } from 'src/helper/mail/mail.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { GoogleStrategy, JwtStrategy } from './strategy';
       inject: [ConfigService],
     }),
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+    MailModule,
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy, GoogleStrategy],

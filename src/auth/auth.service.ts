@@ -12,6 +12,7 @@ import { parseDBError } from 'src/helper/main';
 import { bruteForceCheck } from './helper/auth.helper';
 import { NewUserEvent } from './entities/event.entity';
 import { EventEmitter2 } from '@nestjs/event-emitter';
+import { MailService } from 'src/helper/mail/mail.service';
 
 @Injectable()
 export class AuthService {
@@ -20,6 +21,7 @@ export class AuthService {
     private jwt: JwtService,
     private config: ConfigService,
     private eventEmitter: EventEmitter2,
+    private mailService: MailService,
   ) {}
 
   async signup(dto: SignUpDto): Promise<IAuthUser> {
@@ -36,6 +38,7 @@ export class AuthService {
         eventObject.user = user;
         await user.save();
         this.eventEmitter.emit('user.new', eventObject);
+        await this.mailService.sendUserConfirmation(user, 'token not set');
         return this.signToken(user);
       })
       .catch((e) => {
