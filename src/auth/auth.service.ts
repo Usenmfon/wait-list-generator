@@ -44,7 +44,6 @@ export class AuthService {
             throw new ServiceException({ error: parseDBError(e) });
           });
         return this.signToken(user);
-        return user;
       })
       .catch((e) => {
         throw new ServiceException({ error: parseDBError(e) });
