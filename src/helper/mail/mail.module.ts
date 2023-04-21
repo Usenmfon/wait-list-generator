@@ -12,7 +12,8 @@ import { ConfigService } from '@nestjs/config';
       useFactory: async (config: ConfigService) => ({
         transport: {
           host: config.get('MAIL_HOST'),
-          secure: false,
+          secure: true,
+          service: 'gmail',
           auth: {
             user: config.get('MAIL_USER'),
             pass: config.get('MAIL_PASSWORD'),
@@ -26,6 +27,7 @@ import { ConfigService } from '@nestjs/config';
           adapter: new HandlebarsAdapter(),
           options: {
             strict: true,
+            type: 'SMTP',
           },
         },
       }),

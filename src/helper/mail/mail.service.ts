@@ -8,7 +8,6 @@ export class MailService {
 
   async sendUserConfirmation(user: IAuthUser, token: string) {
     const url = `example.com/auth/confirm?token=${token}`;
-
     await this.mailerService.sendMail({
       to: user.email,
       subject: 'Welcome to Wait List Generator! Confirm your Email',

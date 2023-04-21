@@ -36,10 +36,15 @@ export class AuthService {
         user.password = password;
         const eventObject = new NewUserEvent();
         eventObject.user = user;
-        await user.save();
-        this.eventEmitter.emit('user.new', eventObject);
-        await this.mailService.sendUserConfirmation(user, 'token not set');
-        return this.signToken(user);
+        // await user.save();
+        // this.eventEmitter.emit('user.new', eventObject);
+        await this.mailService
+          .sendUserConfirmation(user, 'token not set')
+          .catch((e) => {
+            throw new ServiceException({ error: parseDBError(e) });
+          });
+        // return this.signToken(user);
+        return user;
       })
       .catch((e) => {
         throw new ServiceException({ error: parseDBError(e) });
