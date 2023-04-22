@@ -14,10 +14,10 @@ export class CreateListDto {
   description: string;
 
   @IsString()
-  @IsNotEmpty()
-  avatar: string;
+  @IsOptional()
+  avatar?: string;
 
   @IsString()
-  @IsNotEmpty()
-  avatar_id: string;
+  @IsOptional()
+  avatar_id?: string;
 }

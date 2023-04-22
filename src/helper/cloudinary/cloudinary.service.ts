@@ -1,6 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { UploadApiErrorResponse, UploadApiResponse, v2 } from 'cloudinary';
+import {
+  DeleteApiResponse,
+  UploadApiErrorResponse,
+  UploadApiResponse,
+  v2,
+} from 'cloudinary';
 import toStream = require('buffer-to-stream');
+import { ServiceException } from '../exceptions/exceptions/service.layer.exception';
+import { parseDBError } from '../main';
 
 @Injectable()
 export class CloudinaryService {
@@ -13,6 +20,12 @@ export class CloudinaryService {
         resolve(result);
       });
       toStream(file.buffer).pipe(upload);
+    });
+  }
+
+  async deleteImage(publicId: string): Promise<DeleteApiResponse> {
+    return await v2.uploader.destroy(publicId).catch((e) => {
+      throw new ServiceException({ error: parseDBError(e) });
     });
   }
 }
