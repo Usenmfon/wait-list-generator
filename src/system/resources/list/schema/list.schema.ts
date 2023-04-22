@@ -12,6 +12,12 @@ export class List {
 
   @Prop({ type: String })
   description: string;
+
+  @Prop({ type: String })
+  avatar: string;
+
+  @Prop({ type: String })
+  avatar_id: string;
 }
 
 export type ListDocument = HydratedDocument<List>;

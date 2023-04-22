@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  UploadedFile,
+  UseGuards,
+} from '@nestjs/common';
 import { ListService } from './list.service';
 import { JwtAuthGuard } from 'src/helper/guard';
 import { GetAuthUser } from 'src/auth/decorators/user.decorator';
@@ -16,7 +23,11 @@ export class ListController {
   }
 
   @Post()
-  async createList(@GetAuthUser() user: IAuthUser, @Body() dto: CreateListDto) {
-    return this.listService.createList(user, dto);
+  async createList(
+    @GetAuthUser() user: IAuthUser,
+    @Body() dto: CreateListDto,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    return this.listService.createList(user, dto, file);
   }
 }

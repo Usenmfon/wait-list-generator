@@ -12,4 +12,12 @@ export class CreateListDto {
   @IsString()
   @IsNotEmpty()
   description: string;
+
+  @IsString()
+  @IsNotEmpty()
+  avatar: string;
+
+  @IsString()
+  @IsNotEmpty()
+  avatar_id: string;
 }
