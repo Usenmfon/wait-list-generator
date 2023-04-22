@@ -18,4 +18,16 @@ export class MailService {
       },
     });
   }
+
+  async sendNotification(user: IAuthUser, contact) {
+    await this.mailerService.sendMail({
+      to: user.email,
+      subject: 'New Sign Up Alert!',
+      template: './notification',
+      context: {
+        name: user.fullname,
+        contact,
+      },
+    });
+  }
 }
