@@ -34,7 +34,7 @@
     "buffer-to-stream": "^1.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
-    "cloudinary": "^1.35.0",
+    "cloudinary": "^1.36.1",
     "handlebars": "^4.7.7",
     "mongoose": "^7.0.3",
     "nodemailer": "^6.9.1",
