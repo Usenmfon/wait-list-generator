@@ -5,69 +5,59 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+ # Wait List Generator
 
-## Description
+Wait List Generator is a NestJS application that allows a user to generate waitlists for a given event. This is useful for managing events where the number of participants is limited. With Wait List Generator, you can easily generate a waitlist for your event and keep track of participants who have registered for the event.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Installation
 
-```bash
-$ npm install
-```
+To use Wait List Generator, you must first have Node.js and npm installed on your computer. If you do not have Node.js installed, you can download it from the official website: https://nodejs.org/en/.
 
-## Running the app
+After you have installed Node.js, you can clone this repository to your local machine using the following command:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+git clone https://github.com/Usenmfon/wait-list-generator.git
 ```
 
-## Test
+Once you have cloned the repository, navigate to the project directory and install the required dependencies by running:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm install
 ```
 
-## Support
+## Usage
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+To use Wait List Generator, navigate to the project directory and start the application by running the following command:
 
-## Stay in touch
+```bash
+npm run start
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+This will start the application and open a web browser to the default port of 3000. You can then access the application by navigating to http://localhost:8080.
+
+To generate a waitlist for your event, enter the name of your event and the maximum number of participants for the event. You will then be prompted to enter the names and contact information of the participants who have registered for the event. Once you have entered all the participants, the application will generate a waitlist for the event.
+
+The waitlist will be displayed in the web browser. You can also download the waitlist in CSV format by clicking the "Download Waitlist" button.
+
+## Contributing
+
+If you would like to contribute to Wait List Generator, please follow these steps:
+
+1. Fork the repository
+2. Create a new branch for your changes
+3. Make your changes and commit them to your branch
+4. Push your branch to your forked repository
+5. Open a pull request from your branch to the main repository
+
+Before making a pull request, please ensure that your changes do not break the existing functionality and that all tests pass.
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+Wait List Generator is licensed under the [MIT License](https://github.com/Usenmfon/wait-list-generator/blob/main/LICENSE). Feel free to use this application for personal or commercial purposes.
