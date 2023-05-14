@@ -40,7 +40,7 @@ To use Wait List Generator, navigate to the project directory and start the appl
 npm run start
 ```
 
-This will start the application and open a web browser to the default port of 3000. You can then access the application by navigating to http://localhost:8080.
+This will start the application and open a web browser to the default port of 8080. You can then access the application by navigating to http://localhost:8080.
 
 To generate a waitlist for your event, enter the name of your event and the maximum number of participants for the event. You will then be prompted to enter the names and contact information of the participants who have registered for the event. Once you have entered all the participants, the application will generate a waitlist for the event.
 
